@@ -7,7 +7,7 @@ jobs:
         document:
           - 'NSR'
     name: Build ${{ matrix.document }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
@@ -17,7 +17,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.base.sha || github.event.push.before }}
           path: old/
-      - uses: docker://ghcr.io/cabforum/build-guidelines-action:2.1.1
+      - uses: docker://ghcr.io/vanbroup/build-guidelines-action:sha-d9cc1ca1
         id: build_doc
         with:
           markdown_file: docs/${{ matrix.document }}.md
